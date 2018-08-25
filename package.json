@@ -1,0 +1,11 @@
+{
+  "name": "mern-shopping-list",
+  "version": "1.0.0",
+  "description": "shopping list tut from traversy built with the MERN stack",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "bill@milemarker3.org",
+  "license": "MIT"
+}
