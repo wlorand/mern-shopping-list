@@ -3,13 +3,13 @@
  * Desc: simple express server, with mongodb connections, maybe hard-coded routes
  */
 
-// 0- require libs 
+// 0- require libs
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
 // 00- require the item routes file
-const items = require('./routes/api/items');
+const items = require("./routes/api/items");
 
 // 1- init express as a var called app
 const app = express();
@@ -27,8 +27,8 @@ mongoose
   .then(() => console.log("MongoDB hosted by mlab Connected..."))
   .catch(err => console.log(err));
 
-// 5- Use Routes File
-app.use('/api/items', items); 
+// 5- Use the Routes File (middleware tells express what to do)
+app.use("/api/items", items);
 
 // 6- Run the server on a Port (set to an env var)
 const port = process.env.PORT || 5000;

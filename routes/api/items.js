@@ -7,7 +7,7 @@
  // 1a- require express
 const express = require('express');
 
-// 1b- bring in the router 
+// 1b- bring in the Express router 
 const router = express.Router();
 
 // 1c - bring in our Item Model

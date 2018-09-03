@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node server.js",
     "server": "nodemon server.js",
-    "dev": ""
+    "client": "npm start --prefix client",
+    "client-install": "npm install --prefix client",
+    "dev": "concurrently --kill-others-on-fail \"npm:server\" \"npm:client\""
   },
   "author": "bill@milemarker3.org",
   "license": "MIT",
