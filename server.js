@@ -27,7 +27,7 @@ mongoose
   .then(() => console.log("MongoDB hosted by mlab Connected..."))
   .catch(err => console.log(err));
 
-// 5- Use the Routes File (middleware tells express what to do)
+// 5- Actually Use the Routes File (recall middleware tells express what to do)
 app.use("/api/items", items);
 
 // 6- Run the server on a Port (set to an env var)

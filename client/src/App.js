@@ -7,12 +7,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 // import local components
 import AppNavbar from "./components/AppNavbar"
+import ShoppingList from "./components/ShoppingList"
 
 class App extends Component {
   render() {
     return (
       <div>
         <AppNavbar />
+        <ShoppingList />
       </div>
     );
   }

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 
+// here's that lots of import thingie when importing UI Components
 import {
     Collapse,
      Navbar,
@@ -12,6 +13,9 @@ import {
 } from 'reactstrap';
 
 class AppNavbar extends Component {
+
+    // went without constructor -- class methods bound using arrow fxn 
+
     state = {
         isOpen: false
     }
