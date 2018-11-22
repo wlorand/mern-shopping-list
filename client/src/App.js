@@ -1,13 +1,13 @@
-// import libs
-import React, { Component } from "react";
+// libs
+import React, { Component } from 'react';
 
-// import assets
-import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+// local components
+import AppNavbar from './components/AppNavbar';
+import ShoppingList from './components/ShoppingList';
 
-// import local components
-import AppNavbar from "./components/AppNavbar"
-import ShoppingList from "./components/ShoppingList"
+// assets
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends Component {
   render() {

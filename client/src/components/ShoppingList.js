@@ -10,23 +10,19 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 // 0.2 - temp import of uuid to give our items temp ids
 import uuid from 'uuid';
 
-// 0.1 import UI Components  (doing this means less CSS inline)
+// 0.1 import UI Components  (benefit: doing this means less CSS inline)
 import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
 
 // 1.0 define your Shopping List component
 class ShoppingList extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      items: [
-        { id: uuid(), name: 'Eggs' },
-        { id: uuid(), name: 'Milk' },
-        { id: uuid(), name: 'Tofu' },
-        { id: uuid(), name: 'Water' }
-      ]
-    };
-  }
+  state = {
+    items: [
+      { id: uuid(), name: 'Eggie Weggs' },
+      { id: uuid(), name: 'Milktoast' },
+      { id: uuid(), name: 'Tofurky' },
+      { id: uuid(), name: 'Aqua Fresca' }
+    ]
+  };
 
   render() {
     const { items } = this.state;
@@ -40,7 +36,7 @@ class ShoppingList extends Component {
             const name = prompt('Enter Item');
             if (name) {
               this.setState(state => ({
-                items: [...state.items, { id: uuid(), name: name }]
+                items: [...items, { id: uuid(), name: name }]
               }));
             }
           }}
@@ -74,7 +70,7 @@ class ShoppingList extends Component {
     );
   }
 }
-// test debugger for this app
+// test debugger for this app -- good xtra js debugging technique
 // debugger;
 
 export default ShoppingList;
