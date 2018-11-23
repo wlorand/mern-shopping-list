@@ -1,6 +1,12 @@
 // libs
 import React, { Component } from 'react';
 
+// react-redux
+import { Provider } from 'react-redux';
+
+// redux store
+import store from './store';
+
 // local components
 import AppNavbar from './components/AppNavbar';
 import ShoppingList from './components/ShoppingList';
@@ -12,10 +18,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 class App extends Component {
   render() {
     return (
-      <div>
-        <AppNavbar />
-        <ShoppingList />
-      </div>
+      <Provider store={store}>
+        <div>
+          <AppNavbar />
+          <ShoppingList />
+        </div>
+      </Provider>
     );
   }
 }
