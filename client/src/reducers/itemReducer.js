@@ -21,6 +21,19 @@ const itemReducer = (state = initialState, action) => {
       return {
         ...state
       };
+    case DELETE_ITEM:
+      return {
+        ...state,
+        items: state.items.filter(item => item.id !== action.payload) // return all items except the one that matches the id
+      };
+    case ADD_ITEM:
+      return {
+        ...state,
+        // need to spread the new item into the state items here
+        // (action.payload listed first to list the new item first)
+        items: [action.payload, ...state.items]
+      };
+
     default:
       return state;
   }

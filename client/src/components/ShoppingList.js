@@ -16,7 +16,10 @@ import { getItems, deleteItem } from '../actions/itemActions';
 import PropTypes from 'prop-types';
 
 // util lib: give our items temp ids -- only applies to component state data
-import uuid from 'uuid';
+// import uuid from 'uuid';
+
+// local components
+import ItemModal from './ItemModal';
 
 // import UI Components
 import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
@@ -26,7 +29,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 // 1.0 define your Shopping List component
 class ShoppingList extends Component {
-  // state = {
+  // state = {  // old local component state -- replaced by redux version
   //   items: [
   //     { id: uuid(), name: 'Old Eggs' },
   //     { id: uuid(), name: 'Old Toast' },
@@ -36,7 +39,6 @@ class ShoppingList extends Component {
   // };
 
   componentDidMount() {
-    console.log('mounted!');
     // call the action
     this.props.getItems();
   }
@@ -46,7 +48,7 @@ class ShoppingList extends Component {
 
     return (
       <Container>
-        <Button
+        {/* <Button  -- old .prompt version of add item
           color="dark"
           style={{ marginBottom: '2rem' }}
           onClick={() => {
@@ -59,7 +61,8 @@ class ShoppingList extends Component {
           }}
         >
           Add Item
-        </Button>
+        </Button> */}
+        <ItemModal />
         <ListGroup>
           <TransitionGroup className="shopping-list">
             {items.map(({ id, name }) => (
@@ -70,11 +73,12 @@ class ShoppingList extends Component {
                     className="remove-btn"
                     color="danger"
                     size="sm"
-                    onClick={() => {
-                      this.setState(prevState => ({
-                        items: prevState.items.filter(item => item.id !== id)
-                      }));
-                    }}
+                    onClick={() => this.props.deleteItem(id)}
+                    // onClick={() => {
+                    //   this.setState(prevState => ({
+                    //     items: prevState.items.filter(item => item.id !== id)
+                    //   }));
+                    // }}
                   >
                     &times;
                   </Button>
@@ -99,5 +103,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getItems }
+  { getItems, deleteItem }
 )(ShoppingList);

@@ -23,7 +23,10 @@ const db = require('./config/keys').mongoURI;
 
 // 4- Connect to MongoDB (using mongoose)
 mongoose
-  .connect(db)
+  .connect(
+    db,
+    { useNewUrlParser: true }
+  )
   .then(() => console.log('MongoDB hosted by mlab Connected...'))
   .catch(err => console.log(err));
 
