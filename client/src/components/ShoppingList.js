@@ -3,29 +3,46 @@
  * Desc: Render a Shopping List of Items with Remove Item Links, Add Item Modal
  */
 
-// 0.0 - import React Libs
+// react Libs
 import React, { Component } from 'react';
-// 0.1 - import react-transition-group
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
-// 0.2 - temp import of uuid to give our items temp ids
+
+// react-redux libs
+import { connect } from 'react-redux';
+
+// redux actions
+import { getItems, deleteItem } from '../actions/itemActions';
+
+// prop types
+import PropTypes from 'prop-types';
+
+// util lib: give our items temp ids -- only applies to component state data
 import uuid from 'uuid';
 
-// 0.1 import UI Components  (benefit: doing this means less CSS inline)
+// import UI Components
 import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
+
+// css effects
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 // 1.0 define your Shopping List component
 class ShoppingList extends Component {
-  state = {
-    items: [
-      { id: uuid(), name: 'Eggie Weggs' },
-      { id: uuid(), name: 'Milktoast' },
-      { id: uuid(), name: 'Tofurky' },
-      { id: uuid(), name: 'Aqua Fresca' }
-    ]
-  };
+  // state = {
+  //   items: [
+  //     { id: uuid(), name: 'Old Eggs' },
+  //     { id: uuid(), name: 'Old Toast' },
+  //     { id: uuid(), name: 'Old Turkey' },
+  //     { id: uuid(), name: 'Old Water' }
+  //   ]
+  // };
+
+  componentDidMount() {
+    console.log('mounted!');
+    // call the action
+    this.props.getItems();
+  }
 
   render() {
-    const { items } = this.state;
+    const { items } = this.props.itemObj;
 
     return (
       <Container>
@@ -70,7 +87,17 @@ class ShoppingList extends Component {
     );
   }
 }
-// test debugger for this app -- good xtra js debugging technique
-// debugger;
 
-export default ShoppingList;
+ShoppingList.propTypes = {
+  getItems: PropTypes.func.isRequired,
+  itemObj: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  itemObj: state.item // access here as props.item
+});
+
+export default connect(
+  mapStateToProps,
+  { getItems }
+)(ShoppingList);
