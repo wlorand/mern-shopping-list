@@ -3,10 +3,8 @@
  * Desc: Render a Shopping List of Items with Remove Item Links, Add Item Modal
  */
 
-// react Libs
+// react, redux Libs
 import React, { Component } from 'react';
-
-// react-redux libs
 import { connect } from 'react-redux';
 
 // redux actions
@@ -16,12 +14,13 @@ import { getItems, deleteItem } from '../actions/itemActions';
 import PropTypes from 'prop-types';
 
 // util lib: give our items temp ids -- only applies to component state data
+// not needed after connecting to backend as mongodb gives things an _id
 // import uuid from 'uuid';
 
 // local components
 import ItemModal from './ItemModal';
 
-// import UI Components
+// UI Components
 import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
 
 // css effects
@@ -30,6 +29,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 // 1.0 define your Shopping List component
 class ShoppingList extends Component {
   // state = {  // old local component state -- replaced by redux version
+  //            1st as static data in the reducer, then dynamic data from the mongo DB
   //   items: [
   //     { id: uuid(), name: 'Old Eggs' },
   //     { id: uuid(), name: 'Old Toast' },
@@ -39,7 +39,8 @@ class ShoppingList extends Component {
   // };
 
   componentDidMount() {
-    // call the action
+    // call the action for get items
+    // -- know does an axios.get to an express api that fetches items from an mlab-hosted mongo DB
     this.props.getItems();
   }
 
@@ -48,7 +49,7 @@ class ShoppingList extends Component {
 
     return (
       <Container>
-        {/* <Button  -- old .prompt version of add item
+        {/* <Button  -- old pre modal js .prompt version of add item
           color="dark"
           style={{ marginBottom: '2rem' }}
           onClick={() => {
@@ -65,15 +66,15 @@ class ShoppingList extends Component {
         <ItemModal />
         <ListGroup>
           <TransitionGroup className="shopping-list">
-            {items.map(({ id, name }) => (
-              <CSSTransition key={id} timeout={500} classNames="fade">
+            {items.map(({ _id, name }) => (
+              <CSSTransition key={_id} timeout={400} classNames="fade">
                 <ListGroupItem>
                   {name}
                   <Button
                     className="remove-btn"
                     color="danger"
                     size="sm"
-                    onClick={() => this.props.deleteItem(id)}
+                    onClick={() => this.props.deleteItem(_id)}
                     // onClick={() => {
                     //   this.setState(prevState => ({
                     //     items: prevState.items.filter(item => item.id !== id)
@@ -94,6 +95,7 @@ class ShoppingList extends Component {
 
 ShoppingList.propTypes = {
   getItems: PropTypes.func.isRequired,
+  deleteItem: PropTypes.func.isRequired,
   itemObj: PropTypes.object.isRequired
 };
 

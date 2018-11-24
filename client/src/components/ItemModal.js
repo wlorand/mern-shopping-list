@@ -11,7 +11,7 @@ import { addItem } from '../actions/itemActions';
 import PropTypes from 'prop-types';
 
 // uuid util lib
-import uuid from 'uuid';
+// import uuid from 'uuid';
 
 // react-strap UI components
 import {
@@ -42,7 +42,7 @@ class ItemModal extends Component {
     e.preventDefault();
     //console.log('itemName now is: ', this.state.itemName);
     const newItem = {
-      id: uuid(),
+      //id: uuid(),
       name: this.state.itemName
     };
     // call the addItem action with newItem as the payload
