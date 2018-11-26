@@ -9,8 +9,8 @@
 # production build dir
 /build
 
-# config dir
-/config
+# config dir  -- temp allowing config to try and fiz heroku error
+# /config
 
 # misc
 .DS_Store
