@@ -1,4 +1,3 @@
-// libs
 import React, { Component } from 'react';
 
 // react-redux

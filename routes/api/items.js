@@ -21,8 +21,8 @@ const ItemModel = require('../../models/ItemModel');
 router.get('/', (req, res) => {
   ItemModel.find() // mongoose method, no?
     .sort({ date: -1 })
-    .then(items => res.json(items));
-  //.catch(err => console.log(err));
+    .then(items => res.json(items))
+    .catch(err => console.log(err));
 });
 
 // @route: POST api/items/
