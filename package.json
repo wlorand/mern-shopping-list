@@ -14,9 +14,9 @@
   "author": "bill@milemarker3.org",
   "license": "MIT",
   "dependencies": {
-    "body-parser": "^1.18.3",
+    "body-parser": "^1.20.1",
     "concurrently": "^4.0.0",
-    "express": "^4.16.3",
+    "express": "^4.18.2",
     "merge": "^1.2.1",
     "mongoose": "^5.2.9"
   },
